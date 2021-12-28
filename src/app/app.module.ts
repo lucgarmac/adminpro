@@ -5,10 +5,13 @@ import { AuthModule } from './auth/auth.module';
 import { PagesModule } from './pages/pages.module';
 
 import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PagesRoutingModule } from './pages/pages-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
