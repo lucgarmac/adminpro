@@ -6,7 +6,7 @@ import { PagesModule } from './pages/pages.module';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PagesRoutingModule } from './pages/pages-routing.module';
+
 
 @NgModule({
   declarations: [

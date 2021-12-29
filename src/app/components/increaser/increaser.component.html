@@ -1,0 +1,23 @@
+<div class="input-group">
+    <span class="input-group-btn">
+        <button 
+            [class]="'btn ' + btnClass" 
+            type="button"
+            (click)="valueChange(-5)">
+            <i class="fa fa-minus"></i>
+        </button>
+    </span>
+    <input 
+        #inputProgressBar
+        type="number" 
+        class="form-control" 
+        [(ngModel)]="progress">
+    <span class="input-group-btn">
+        <button 
+            [class]="'btn ' + btnClass" 
+            type="button"
+            (click)="valueChange(5)">
+            <i class="fa fa-plus"></i>
+        </button>
+    </span>
+</div>
