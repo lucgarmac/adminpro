@@ -20,6 +20,7 @@ export class BreadcrumComponent implements OnDestroy{
         document.title = this.title ? `AdminPro - ${this.title}` : 'AdminPro';
       });
   }
+  
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
