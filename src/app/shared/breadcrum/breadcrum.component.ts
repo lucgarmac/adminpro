@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivationEnd, Router } from '@angular/router';
+import { filter, map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrum',
@@ -6,11 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class BreadcrumComponent implements OnInit {
+export class BreadcrumComponent implements OnDestroy{
 
-  constructor() { }
+  private subscription: Subscription;
+  title: string;
 
-  ngOnInit(): void {
+  constructor(private router: Router) {
+    this.subscription = this.getRouterData()
+      .subscribe(data => {
+        this.title = data['title'];
+        document.title = this.title ? `AdminPro - ${this.title}` : 'AdminPro';
+      });
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  private getRouterData() {
+    return this.router.events
+      .pipe(
+        filter(e => e instanceof ActivationEnd),
+        filter(e => !(<ActivationEnd>e).snapshot.firstChild),
+        map(e => (<ActivationEnd>e).snapshot.data)
+      );
   }
 
 }

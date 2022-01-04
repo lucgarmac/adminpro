@@ -1,0 +1,122 @@
+<h3>Observable results</h3>
+<p>You can see more info in the console</p>
+<div class="row mt-5 pt-3">
+    <div class=col-12>
+      <h4>Observables - errors and complete </h4>
+    </div>
+    <div class="col-md-6" style="height: 200px;overflow-y: auto;">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Exec number</th>
+                <th scope="col">Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let result of resultExample1; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>
+                    <ng-container *ngIf="result.ishtml">
+                        <div [innerHtml]="result.data"></div>
+                    </ng-container>
+                    <ng-container *ngIf="!result.ishtml">
+                        {{result.data}}
+                    </ng-container>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <button type="button" class="btn btn-danger mr-2" (click)="launchError = !launchError">Launch error</button>
+        <button type="button" class="btn btn-primary" (click)="finishObs = !finishObs">Finish observable</button>  
+    </div>
+</div>
+
+
+<div class="row mt-5 pt-3">
+  <div class=col-12>
+    <h4>Observables - Retry</h4>
+  </div>
+  <div class="col-md-6" style="height: 200px;overflow-y: auto;">
+      <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Exec number</th>
+              <th scope="col">Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let result of resultExample2; let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>
+                  <ng-container *ngIf="result.ishtml">
+                      <div [innerHtml]="result.data"></div>
+                  </ng-container>
+                  <ng-container *ngIf="!result.ishtml">
+                      {{result.data}}
+                  </ng-container>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+  <div class="col-md-4">
+      <div class="form-group">
+          <label  for="retries">Retries:</label>
+          <input #retriesInput type="number" [(ngModel)]="retries" (ngModelChange)="onChangeRetries($event)" class="form-control"> 
+          <button type="button" class="btn btn-primary mt-2 float-right" (click)="retryObservable()">Launch retries</button>  
+      </div>
+  </div>
+</div>
+
+
+<div class="row mt-5 pt-3">
+  <div class=col-12>
+    <h4>Observables - Take, Map y Filter</h4>
+    <p>
+      <strong>Take</strong>: Indica al observable cuantas emisiones quiere lanzar.
+      <strong>Map</strong>: Transforma la información que se recibe del observable.
+      <strong>Filter</strong>: Emite un valor de forma condicional.
+    </p>
+  </div>
+  <div class="col-md-6" style="height: 200px;overflow-y: auto;">
+      <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Exec number</th>
+              <th scope="col">Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let result of resultExample3; let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>
+                  <ng-container *ngIf="result.ishtml">
+                      <div [innerHtml]="result.data"></div>
+                  </ng-container>
+                  <ng-container *ngIf="!result.ishtml">
+                      {{result.data}}
+                  </ng-container>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+        <label  for="take">Take:</label>
+        <input #takeInput type="number" [(ngModel)]="takeExample3" (ngModelChange)="onChangeTake($event)" class="form-control"> 
+        <button type="button" class="btn btn-primary mt-2 float-right" (click)="takeObservable()">Launch take</button>  
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label  for="take">Filter:</label>
+      <button type="button" class="btn btn-secondary ml-2" (click)="giveMePairs()">Give me pairs</button>  
+  </div>
+  </div>
+</div>
+
+
+
