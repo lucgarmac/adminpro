@@ -11,7 +11,7 @@ export class SettingsService {
 
   setTheme() {
     const currentThemeUrl = localStorage.getItem('theme');
-    this.theme.href = currentThemeUrl ? currentThemeUrl : 'assets/css/colors/default-dark.css';
+    this.theme.href = currentThemeUrl ? currentThemeUrl : 'assets/css/colors/blue-dark.css';
   }
 
   changeTheme(theme: string) {
