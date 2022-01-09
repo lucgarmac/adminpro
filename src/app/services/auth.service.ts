@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TokenRequest, LoginRequest, LoginResponse } from '../models/api/auth';
-import { UserCreatedResponse } from '../models/api/user';
+import { UserResponse } from '../models/api/user';
 
 
 declare const gapi:any;
@@ -29,13 +29,13 @@ export class AuthService {
     return this.http.post<{token:string}>(this.url, request);
   }
 
-  loginWithGoogle(request: TokenRequest): Observable<UserCreatedResponse> {
-    return this.http.post<UserCreatedResponse>(`${this.url}/google`, request);
+  loginWithGoogle(request: TokenRequest): Observable<UserResponse> {
+    return this.http.post<UserResponse>(`${this.url}/google`, request);
   }
 
-  validateToken(request: TokenRequest): Observable<LoginResponse> {
-    return this.http.get<LoginResponse>(`${this.url}/renew`, { 
-      headers: { 'token': request.token }
+  validateToken(token: string): Observable<UserResponse> {
+    return this.http.get<UserResponse>(`${this.url}/renew`, { 
+      headers: { 'token': token }
     });
   }
 

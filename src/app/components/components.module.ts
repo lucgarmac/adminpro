@@ -5,13 +5,15 @@ import { NgChartsModule } from 'ng2-charts';
 
 import { DoughnutComponent } from './doughnut/doughnut.component';
 import { IncreaserComponent } from './increaser/increaser.component';
+import { CustomErrorComponent } from './custom-error/custom-error.component';
 
 
 
 @NgModule({
   declarations: [
     IncreaserComponent,
-    DoughnutComponent
+    DoughnutComponent,
+    CustomErrorComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { IncreaserComponent } from './increaser/increaser.component';
   ],
   exports: [
     IncreaserComponent,
-    DoughnutComponent
+    DoughnutComponent,
+    CustomErrorComponent
   ]
 })
 export class ComponentsModule { }

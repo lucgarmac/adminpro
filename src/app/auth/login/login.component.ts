@@ -67,13 +67,11 @@ export class LoginComponent implements OnInit {
 
             errMsg = errMsg.concat('</ul>');
           }
-          
-
           Swal.fire({
-          title: 'Login',
-          html: errMsg,
-          icon: 'error'
-        });
+            title: 'Login',
+            html: errMsg,
+            icon: 'error'
+          });
       }
     });
   }

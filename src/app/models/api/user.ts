@@ -1,12 +1,17 @@
 export interface UserRequest {
     name: string;
-    password: string;
     email: string;
+    password?: string;
+    role?: string;
 }
 
-export interface UserCreatedResponse {
+export interface UserResponse {
     user: User;
     token: string;
+}
+
+export interface UserUpdatedResponse {
+    userUpdated: User;
 }
 
 export interface User {

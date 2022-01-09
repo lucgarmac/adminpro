@@ -10,6 +10,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromiseComponent } from './promise/promise.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { 
@@ -22,7 +23,8 @@ const routes: Routes = [
       { path: 'charts', component: Grafica1Component, data: { title: 'Charts'} },
       { path: 'promises', component: PromiseComponent, data: { title: 'Promises'}},
       { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs'} },
-      { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Theme'} }
+      { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Theme'} },
+      { path: 'profile', component: ProfileComponent, data: { title: 'Profile'} }
     ]
 },
 ];

@@ -1,0 +1,17 @@
+.card, .card-body {
+    width: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.card-body h3.card-title {
+    font-size: 1.75rem;
+}
+
+.custom-img-error {
+    width: 350px;
+}
