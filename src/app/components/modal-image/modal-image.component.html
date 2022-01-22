@@ -1,0 +1,59 @@
+<div class="background-modal" [class.hide]="!showModal">
+    <div class="modal fade show d-block" id="modalImage"  role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update image {{entity}}</h4>
+                    <button type="button" class="close cursor-pointer" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+                </div>
+
+                <div class="modal-body">
+                
+                    <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                        <h5 class="font-italic" *ngIf="!imgLoaded">Default image</h5>
+                        <img
+                          class="img-fluid mb-2"
+                          [src]="imgLoaded ? imgLoaded?.path : defaultImageUrl"
+                          style="width: 300px"/>
+                    </div>
+        
+                    <div class="form-group">
+                        <div class="fileinput input-group">
+                          <div class="form-control">
+                              <ng-container *ngIf="imgLoaded">
+                                <i class="fa fa-file mr-2"></i>
+                                <span>{{imgLoaded.name}}</span>
+                              </ng-container>
+                          </div>
+                          <span class="input-group-addon btn btn-secondary btn-file">
+                            <span *ngIf="!imgLoaded">Select file</span>
+                            <span *ngIf="imgLoaded">Change</span>
+                            <input 
+                                #inputFile
+                                type="file"
+                                id="file"
+                                (change)="loadImage($event)"/>
+                          </span>
+                          <span *ngIf="imgLoaded" (click)="removeTempImage()"
+                            class="input-group-addon btn btn-secondary"
+                            >Remove</span>
+                        </div>
+                      </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button 
+                        type="button" 
+                        class="btn btn-primary" 
+                        [disabled]="!imgLoaded || errorMsg"
+                        (click)="updateImage()">Update image</button>
+                    <button 
+                        type="button"
+                        class="btn btn-secondary" 
+                        aria-label="Close" 
+                        (click)="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

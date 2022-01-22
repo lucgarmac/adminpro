@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ChartData, ChartType, ChartConfiguration } from 'chart.js';
 
 @Component({
-  selector: 'app-grafica1',
-  templateUrl: './grafica1.component.html',
+  templateUrl: './charts1.component.html',
   styles: [
   ]
 })
-export class Grafica1Component {
+export class Charts1Component {
 
 
   doughnutsValues = [

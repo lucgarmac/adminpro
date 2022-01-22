@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+@import 'assets/css/file-input.css';
+
 .fast {
   -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;
@@ -10,4 +13,3 @@
 #themecolors li a.selector, .cursor-pointer {
   cursor: pointer;
 }
-

@@ -5,12 +5,15 @@ import { AuthGuard } from '../guards/auth.guard';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { Grafica1Component } from './grafica1/grafica1.component';
+import { Charts1Component } from './charts1/charts1.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromiseComponent } from './promise/promise.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './management/users/users.component';
+import { HospitalsComponent } from './management/hospitals/hospitals.component';
+import { DoctorsComponent } from './management/doctors/doctors.component';
 
 const routes: Routes = [
   { 
@@ -20,11 +23,14 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent, data: { title: 'Dashboard'} },
       { path: 'progress', component: ProgressComponent, data: { title: 'ProgressBar'} }, 
-      { path: 'charts', component: Grafica1Component, data: { title: 'Charts'} },
+      { path: 'charts', component: Charts1Component, data: { title: 'Charts'} },
       { path: 'promises', component: PromiseComponent, data: { title: 'Promises'}},
       { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs'} },
       { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Theme'} },
-      { path: 'profile', component: ProfileComponent, data: { title: 'Profile'} }
+      { path: 'profile', component: ProfileComponent, data: { title: 'Profile'} },
+      { path: 'users', component: UsersComponent, data: { title: 'Users management'} },
+      { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitals management'} },
+      { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctors management'} }
     ]
 },
 ];

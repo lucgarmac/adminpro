@@ -9,9 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit {
   
@@ -24,11 +22,11 @@ export class ProfileComponent implements OnInit {
   imgUserUrl: string;
   imgLoaded: {
     file: File, 
-    path: string | ArrayBuffer | null,
+    path: string | ArrayBuffer,
     name: string
-  } | null;
+  };
 
-  @ViewChild('inputFile') inpuFileElement: ElementRef;
+  @ViewChild('inputFile', {static: false}) inpuFileElement: ElementRef;
   
 
   constructor(private builder: FormBuilder,
@@ -101,13 +99,17 @@ export class ProfileComponent implements OnInit {
             Swal.fire({
               title: 'Update user',
               text: 'The user has been update successfully',
-              icon: 'success'
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1500
             });
           },
           error: err => Swal.fire({
             title: 'Update user',
             text: err.error.msg,
-            icon: 'error'
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500
           })
         });
     }
@@ -129,13 +131,17 @@ export class ProfileComponent implements OnInit {
           Swal.fire({
             title: 'Update user',
             text: 'The user has been update successfully',
-            icon: 'success'
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
           }) 
         },
         error: err => Swal.fire({
           title: 'Update user',
           text: err.error.msg,
-          icon: 'error'
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 1500
         })
         });
     }

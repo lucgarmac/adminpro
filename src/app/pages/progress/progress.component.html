@@ -1,60 +1,62 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-
-                <h4 class="card-title">Striped Progress bar</h4>
-                <div class="progress m-t-20">
-                    <div 
-                        class="progress-bar bg-primary progress-bar-striped" 
-                        aria-valuenow="85" 
-                        aria-valuemin="0" 
-                        aria-valuemax="100" 
-                        style="height:10px;"
-                        [style.width]="progressBar1Formatted"
-                        role="progressbar">
+<div class="progress animated fadeIn fast">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+    
+                    <h4 class="card-title">Striped Progress bar</h4>
+                    <div class="progress m-t-20">
+                        <div 
+                            class="progress-bar bg-primary progress-bar-striped" 
+                            aria-valuenow="85" 
+                            aria-valuemin="0" 
+                            aria-valuemax="100" 
+                            style="height:10px;"
+                            [style.width]="progressBar1Formatted"
+                            role="progressbar">
+                        </div>
                     </div>
-                </div>
-
-                <div class="progress m-t-20">
-                    <div 
-                        class="progress-bar bg-info progress-bar-striped" 
-                        aria-valuenow="85" 
-                        aria-valuemin="0" 
-                        aria-valuemax="100" 
-                        style="height:10px;"
-                        [style.width]="progressBar2Formatted"
-                        role="progressbar">
+    
+                    <div class="progress m-t-20">
+                        <div 
+                            class="progress-bar bg-info progress-bar-striped" 
+                            aria-valuenow="85" 
+                            aria-valuemin="0" 
+                            aria-valuemax="100" 
+                            style="height:10px;"
+                            [style.width]="progressBar2Formatted"
+                            role="progressbar">
+                        </div>
                     </div>
+    
                 </div>
-
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-6">
-        <div class="card">
-            <div class="card-body">
-                <app-increaser 
-                    [btnClass]="'btn-primary'"
-                    [progress]="progressBar1"
-                    (progressFormatted)="progressBar1 = $event">
-                </app-increaser>
-                
+    
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <app-increaser 
+                        [btnClass]="'btn-primary'"
+                        [progress]="progressBar1"
+                        (progressFormatted)="progressBar1 = $event">
+                    </app-increaser>
+                    
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="col-6">
-        <div class="card">
-            <div class="card-body">
-                <app-increaser 
-                    [btnClass]="'btn-info'"
-                    [progress]="progressBar2"
-                    (progressFormatted)="progressBar2 = $event">
-                </app-increaser>
+    
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <app-increaser 
+                        [btnClass]="'btn-info'"
+                        [progress]="progressBar2"
+                        (progressFormatted)="progressBar2 = $event">
+                    </app-increaser>
+                </div>
             </div>
         </div>
     </div>

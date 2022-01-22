@@ -1,0 +1,6 @@
+<div class="text-center" role="alert"
+    [class]="'alert ' + alertType">
+    <h4 class="alert-heading">{{header}}</h4>
+    <i [ngClass]="[icon, iconSize, iconEffect]"></i>
+    <p *ngIf="content">{{content}}</p>
+</div>

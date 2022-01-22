@@ -21,7 +21,7 @@ export class SettingsService {
     localStorage.setItem('theme', url);
   }
 
-  fillCheckCurrentTheme(themeUrl?: string | null) {
+  fillCheckCurrentTheme(themeUrl?: string) {
     themeUrl = themeUrl || localStorage.getItem('theme');
     if(themeUrl) {
       const themeName = themeUrl.substring(themeUrl.lastIndexOf('/') + 1).replace('.css', '') + '-theme';

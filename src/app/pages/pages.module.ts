@@ -7,12 +7,17 @@ import { ComponentsModule } from '../components/components.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
-import { Grafica1Component } from './grafica1/grafica1.component';
+import { Charts1Component } from './charts1/charts1.component';
 import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromiseComponent } from './promise/promise.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './management/users/users.component';
+import { DoctorsComponent } from './management/doctors/doctors.component';
+import { HospitalsComponent } from './management/hospitals/hospitals.component';
+import { NgbActiveModal, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditUserModalComponent } from './management/users/actions/edit-user-modal/edit-user-modal.component';
 
 
 
@@ -21,25 +26,34 @@ import { ProfileComponent } from './profile/profile.component';
     PagesComponent,
     DashboardComponent,
     ProgressComponent,
-    Grafica1Component,
+    Charts1Component,
     AccountSettingsComponent,
     PromiseComponent,
     RxjsComponent,
     ProfileComponent,
+    UsersComponent,
+    DoctorsComponent,
+    HospitalsComponent,
+    EditUserModalComponent
   ],
   imports: [
     CommonModule,
+    ComponentsModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    ComponentsModule
+    NgbModalModule
   ],
   exports: [
     DashboardComponent,
     ProgressComponent,
-    Grafica1Component,
+    Charts1Component,
     AccountSettingsComponent
+  ],
+  providers: [
+    NgbModal,
+    NgbActiveModal
   ]
 })
 export class PagesModule { }

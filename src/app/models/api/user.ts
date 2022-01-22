@@ -22,3 +22,14 @@ export interface User {
     google?: boolean;
     img?: string;
 }
+
+export interface UserSearchRequest {
+    offset: number,
+    limit: number,
+    [filter: string]: any
+}
+
+export interface UserSearchResponse {
+    totalItems: number,
+    users: User[]
+}

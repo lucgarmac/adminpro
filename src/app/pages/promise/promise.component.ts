@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReqResInUser } from 'src/app/models/req-res-in-user';
 
 @Component({
-  selector: 'app-promise',
-  templateUrl: './promise.component.html',
-  styles: [
-  ]
+  templateUrl: './promise.component.html'
 })
 export class PromiseComponent implements OnInit {
 

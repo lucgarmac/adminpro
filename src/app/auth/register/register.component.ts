@@ -63,14 +63,18 @@ export class RegisterComponent implements OnInit {
             Swal.fire({
               title: 'Register user',
               text: 'The user has been create successfully!',
-              icon: 'success'
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1500
             });
             this.router.navigate(['/login']);
           },
           error: err => Swal.fire({
             title: 'Register user',
             text: err.error.msg,
-            icon: 'error'
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500
           })
         });
     }
@@ -78,7 +82,7 @@ export class RegisterComponent implements OnInit {
   }
 
   somePasswords(key1: string, key2: string): ValidatorFn {
-    return <ValidatorFn> ((formGroup: FormGroup): ValidationErrors | null => {
+    return <ValidatorFn> ((formGroup: FormGroup): ValidationErrors => {
 
       if(formGroup.get(key1)?.pristine || formGroup.get(key2)?.pristine) {
         return null;

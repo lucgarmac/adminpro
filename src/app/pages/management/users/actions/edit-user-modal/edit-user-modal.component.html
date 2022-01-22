@@ -1,0 +1,30 @@
+<div class="edit-user">
+    <div class="modal-header">
+        <h4>Edit role</h4>
+    </div>
+
+    <form novalidate [formGroup]="formGroup">
+        <div class="modal-body">
+            <div class="form-group w-75"
+                [class.has-danger]="formGroup.get('role').touched && formGroup.get('role').errors">
+                <label for="role">Select a role for the user {{userToEdit.email}}:</label>
+                <select class="form-control" formControlName="role">
+                    <option [value]="'ADMIN_ROLE'">Admin role</option>
+                    <option [value]="'USER_ROLE'" selected>User role</option>
+                </select>
+                <span class="text-danger"
+                    *ngIf="formGroup.get('role').touched && formGroup.get('role').hasError('required')">
+                    The field role is mandatory
+                </span>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" [disabled]="formGroup.invalid" (click)="onUpdateUser()">Update
+                user</button>
+            <button type="button" class="btn btn-secondary" aria-label="Close"
+                (click)="modal.close('cancel')">Cancel</button>
+        </div>
+    </form>
+</div>

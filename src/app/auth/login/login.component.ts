@@ -70,7 +70,9 @@ export class LoginComponent implements OnInit {
           Swal.fire({
             title: 'Login',
             html: errMsg,
-            icon: 'error'
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500
           });
       }
     });

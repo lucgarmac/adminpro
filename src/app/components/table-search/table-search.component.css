@@ -1,0 +1,12 @@
+button:disabled {
+    pointer-events: none;
+}
+
+table td {
+    vertical-align: middle;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: .8;
+}

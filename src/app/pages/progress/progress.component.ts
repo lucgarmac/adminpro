@@ -2,7 +2,6 @@ import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-progress',
   templateUrl: './progress.component.html',
   styleUrls: [ './progress.component.css']
 })

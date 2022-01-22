@@ -1,46 +1,49 @@
-<h4>Thens</h4>
-<p>Show more details in console</p>
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Exec number</th>
-        <th scope="col">Data</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>{{execPromise[0]}}</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>{{execPromise[1] | json}}</td>
-      </tr>
-    </tbody>
-</table>
-
-
-<h4 class="mt-5">Final result</h4>
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">First name</th>
-        <th scope="col">Last name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Avatar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <th scope="row">{{user.id}}</th>
-        <td>{{user.first_name}}</td>
-        <td>{{user.last_name}}</td>
-        <td>{{user.email}}</td>
-        <td>
-            <img class="img-fluid" [src]="user.avatar">
-        </td>
-      </tr>
-    </tbody>
-</table>
+<div class="promise animated fadeIn fast">
   
+  <h4>Thens</h4>
+  <p>Show more details in console</p>
+  <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Exec number</th>
+          <th scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>{{execPromise[0]}}</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>{{execPromise[1] | json}}</td>
+        </tr>
+      </tbody>
+  </table>
+  
+  
+  <h4 class="mt-5">Final result</h4>
+  <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Avatar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <th scope="row">{{user.id}}</th>
+          <td>{{user.first_name}}</td>
+          <td>{{user.last_name}}</td>
+          <td>{{user.email}}</td>
+          <td>
+              <img class="img-fluid" [src]="user.avatar">
+          </td>
+        </tr>
+      </tbody>
+  </table>
+    
+</div>

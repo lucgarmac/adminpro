@@ -3,7 +3,6 @@ import { filter, interval, map, Observable, retry, Subscription, take } from 'rx
 
 
 @Component({
-  selector: 'app-rxjs',
   templateUrl: './rxjs.component.html'
 })
 export class RxjsComponent implements OnInit, OnDestroy {

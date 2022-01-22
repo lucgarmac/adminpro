@@ -8732,7 +8732,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
   
   hasPlaceholderSet: function() {
     var supportsPlaceholder = wysihtml5.browser.supportsPlaceholderAttributeOn(this.element),
-        placeholderText     = this.element.getAttribute("placeholder") || null,
+        placeholderText     = this.element.getAttribute("placeholder") |,
         value               = this.element.value,
         isEmpty             = !value;
     return (supportsPlaceholder && isEmpty) || (value === placeholderText);
