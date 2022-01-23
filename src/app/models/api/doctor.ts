@@ -18,7 +18,6 @@ export interface DoctorSearchResponse {
     doctors: Doctor[];
 }
 
-
 export interface Doctor {
     uid: string;
     name: string;

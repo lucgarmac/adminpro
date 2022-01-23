@@ -1,0 +1,88 @@
+<div class="row animated fadeIn fast">
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h4 class="card-title">Doctor</h4>
+                <h6 class="card-subtitle">{{operation}} doctor info</h6>
+    
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                    <h5 class="font-italic" *ngIf="!imgLoaded">Default image</h5>
+                    <div class="upload-wrapper">
+                        <img 
+                            class="img-fluid mb-2 cursor-pointer" 
+                            [src]="imgLoaded ? imgLoaded?.path : (defaultImgUrl | imageUrl:entityNameEnum.Doctors)"
+                            style="width: 300px" />
+                        <input 
+                        #inputFile
+                        type="file"
+                        id="file"
+                        (change)="loadImage($event)"/>
+                    </div>
+                    
+                </div>
+    
+                <form class="form-horizontal p-t-20" novalidate [formGroup]="formGroup">
+                    <div class="form-group row"
+                        [class.has-danger]="formGroup.get('name').touched && formGroup.get('name').errors">
+                        <label for="name" class="col-sm-3 control-label">Name*</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" formControlName="name">
+                            <span class="text-danger"
+                                *ngIf="formGroup.get('name').touched && formGroup.get('name').hasError('required')">
+                                The field hospital is mandatory
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row"
+                        [class.has-danger]="formGroup.get('hospital').touched && formGroup.get('hospital').errors">
+                        <label for="hospital" class="col-sm-3 control-label">Hospital*</label>
+                    
+                        <div class="col-sm-9">
+                            <select class="form-control" formControlName="hospital">
+                                <option *ngFor="let hospital of hospitals" [value]="hospital.id">{{hospital.name}}</option>
+                            </select>
+                            <span class="text-danger"
+                                *ngIf="formGroup.get('hospital').touched && formGroup.get('hospital').hasError('required')">
+                                The field hospital is mandatory
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button 
+                                type="button" 
+                                class="btn btn-success waves-effect waves-light m-r-10"
+                                [disabled]="(!doctorToEdit && formGroup.invalid) ||
+                                (doctorToEdit && ((formGroup.touched && formGroup.invalid) || (!thereAreChanges && !imgLoaded)))"
+                                (click)="onSubmit()">Submit
+                            </button>
+                            <button 
+                                type="button" 
+                                class="btn btn-inverse waves-effect waves-light" 
+                                (click)="onCancel()">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h4 class="card-title">Hospital associated</h4>
+                <h6 class="card-subtitle">Hospital image to the doctor associated</h6>
+    
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                    <img *ngIf="firstLoad" class="img-fluid mb-2" 
+                        [src]="(doctorToEdit && doctorToEdit.hospital && doctorToEdit.hospital.img 
+                            ? doctorToEdit.hospital.img : '') | imageUrl:entityNameEnum.Hospitals" style="width: 300px" />
+                    <img *ngIf="!firstLoad" class="img-fluid mb-2" 
+                        [src]="hospitalImgUrl | imageUrl:entityNameEnum.Hospitals" style="width: 300px" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

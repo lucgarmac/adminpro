@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './management/users/users.component';
 import { HospitalsComponent } from './management/hospitals/hospitals.component';
 import { DoctorsComponent } from './management/doctors/doctors.component';
+import { DoctorFormComponent } from './management/doctors/actions/doctor-form/doctor-form.component';
 
 const routes: Routes = [
   { 
@@ -30,7 +31,9 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent, data: { title: 'Profile'} },
       { path: 'users', component: UsersComponent, data: { title: 'Users management'} },
       { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitals management'} },
-      { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctors management'} }
+      { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctors management'} },
+      { path: 'doctors/new', component: DoctorFormComponent, data: { title: 'New Doctor'} },
+      { path: 'doctors/:uid', component: DoctorFormComponent, data: { title: 'Update Doctor'} }
     ]
 },
 ];

@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { finalize } from 'rxjs';
 import { DoctorRequest } from 'src/app/models/api/doctor';
@@ -16,7 +17,6 @@ import { HospitalService } from 'src/app/services/hospital.service';
 import { SearchsService } from 'src/app/services/searchs.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import Swal from 'sweetalert2';
-import { EditDoctorModalComponent } from './actions/edit-doctor-modal/edit-doctor-modal.component';
 
 @Component({
   selector: 'app-doctors',
@@ -71,7 +71,8 @@ export class DoctorsComponent implements OnInit {
               private modalImageService: ModalImageService,
               private builder: FormBuilder,
               private utilsService: UtilsService,
-              private hospitalService: HospitalService) { }
+              private hospitalService: HospitalService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.token = localStorage.getItem('token') || '';
@@ -120,14 +121,7 @@ export class DoctorsComponent implements OnInit {
   }
 
   onEditDoctor(doctor: DoctorExtended) {
-    const modalRef = this.modalService.open(EditDoctorModalComponent, {backdrop: 'static', keyboard: false});
-    modalRef.componentInstance.doctorToEdit = doctor;
-    modalRef.componentInstance.token = this.token;
-    modalRef.result.then(result => {
-      if(result === 'success') {
-        this.loadData();
-      }
-    });
+    this.router.navigate(['/dashboard/doctors', doctor.uid]);
   }
 
   onEditImage(uid: string) {
@@ -138,47 +132,7 @@ export class DoctorsComponent implements OnInit {
   }
 
   onCreateDoctor() {
-    this.formGroup = this.builder.group({
-      name: ['', [Validators.required, this.utilsService.nameValidator()]],
-      hospital: ['', Validators.required]
-    });
-    this.hospitalService.getHospitals(this.token)
-      .subscribe(response => {
-        this.hospitals = response && response.hospitals 
-        ? response.hospitals.map( hospital => <ListItem>({id: hospital.id, label: hospital.name}))
-        : [];
-      });
-    this.modalNewDoctor = this.modalService.open(this.newDoctorTemplate, {backdrop: 'static', keyboard: false});
-  }
-
-  newDoctor(formGroup: FormGroup) {
-    if(formGroup.valid) {
-      const request: DoctorRequest = {
-        name: this.formGroup.get('name').value.trim(),
-        hospital: this.formGroup.get('hospital').value
-
-      };
-      this.doctorService.createDoctor(this.token, request)
-        .subscribe({
-          next: _ => {
-            this.modalNewDoctor.close();
-            this.loadData();
-            Swal.fire({
-              title: 'Created doctor',
-              text: 'The doctor has been created successfully.',
-              icon: 'success',
-              showConfirmButton: false,
-              timer: 1500
-            });
-          },
-          error: err => Swal.fire({
-            title: 'Create doctor',
-            text: err.error.msg,
-            icon: 'error',
-            showConfirmButton: true
-          })
-        });
-    }
+    this.router.navigate(['/dashboard/doctors/new']);
   }
 
   searchData() {

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EntityNameEnum } from 'src/app/models/api/entity-name-enum';
 import { FileRequest, FileUploadRequest } from 'src/app/models/api/file';
 import { User, UserRequest } from 'src/app/models/api/user';
+import { ImageFile } from 'src/app/models/components/image-file';
 import { PagesService } from 'src/app/pages/pages.service';
 import { FilesService } from 'src/app/services/files.service';
 import { UserService } from 'src/app/services/user.service';
@@ -20,11 +21,7 @@ export class ProfileComponent implements OnInit {
   areDefaultValues: boolean;
   errorMsg: string;
   imgUserUrl: string;
-  imgLoaded: {
-    file: File, 
-    path: string | ArrayBuffer,
-    name: string
-  };
+  imgLoaded: ImageFile;
 
   @ViewChild('inputFile', {static: false}) inpuFileElement: ElementRef;
   

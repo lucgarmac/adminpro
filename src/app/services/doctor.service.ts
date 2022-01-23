@@ -26,6 +26,11 @@ export class DoctorService {
     return this.http.get<DoctorSearchResponse>(this.url, { headers: { 'token': token } });
   }
 
+  getDoctor(token: string, id: string): Observable<Doctor> {
+    return this.http.get<{doctor: Doctor}>(`${this.url}/${id}`, { headers: { 'token': token } })
+      .pipe(map(response => response.doctor));
+  }
+
   removeDoctor(token: string, id: string): Observable<Doctor> {
     return this.http.delete<Doctor>(`${this.url}/${id}`, { headers: { 'token': token }});
   }

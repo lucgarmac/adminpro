@@ -19,8 +19,8 @@ import { HospitalsComponent } from './management/hospitals/hospitals.component';
 import { NgbActiveModal, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditUserModalComponent } from './management/users/actions/edit-user-modal/edit-user-modal.component';
 import { EditHospitalModalComponent } from './management/hospitals/actions/edit-hospital-modal/edit-hospital-modal.component';
-import { EditDoctorModalComponent } from './management/doctors/actions/edit-doctor-modal/edit-doctor-modal.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { DoctorFormComponent } from './management/doctors/actions/doctor-form/doctor-form.component';
 
 
 
@@ -39,7 +39,7 @@ import { PipesModule } from '../pipes/pipes.module';
     HospitalsComponent,
     EditUserModalComponent,
     EditHospitalModalComponent,
-    EditDoctorModalComponent
+    DoctorFormComponent
   ],
   imports: [
     CommonModule,
