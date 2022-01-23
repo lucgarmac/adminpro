@@ -1,0 +1,28 @@
+<div class="edit-user">
+    <div class="modal-header">
+        <h4>Edit hospital name</h4>
+    </div>
+
+    <form novalidate [formGroup]="formGroup">
+        <div class="modal-body">
+            <div class="form-group"
+                [class.has-danger]="formGroup.get('name').touched && formGroup.get('name').errors">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" formControlName="name" autocomplete="off"/>
+                <span class="text-danger"
+                    *ngIf="formGroup.get('name').touched && (formGroup.get('name').hasError('required') 
+                            || formGroup.get('name').hasError('invalidName'))">
+                    The field name is mandatory
+                </span>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" [disabled]="formGroup.invalid" (click)="onUpdateHospital()">Update
+                hospital</button>
+            <button type="button" class="btn btn-secondary" aria-label="Close"
+                (click)="modal.close('cancel')">Cancel</button>
+        </div>
+    </form>
+</div>

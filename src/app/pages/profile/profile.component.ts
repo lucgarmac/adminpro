@@ -108,8 +108,7 @@ export class ProfileComponent implements OnInit {
             title: 'Update user',
             text: err.error.msg,
             icon: 'error',
-            showConfirmButton: false,
-            timer: 1500
+            showConfirmButton: true
           })
         });
     }
@@ -140,8 +139,7 @@ export class ProfileComponent implements OnInit {
           title: 'Update user',
           text: err.error.msg,
           icon: 'error',
-          showConfirmButton: false,
-          timer: 1500
+          showConfirmButton: true
         })
         });
     }

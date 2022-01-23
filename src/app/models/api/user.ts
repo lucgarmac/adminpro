@@ -33,3 +33,7 @@ export interface UserSearchResponse {
     totalItems: number,
     users: User[]
 }
+
+export interface UserRef extends User {
+    _id?: string;
+}

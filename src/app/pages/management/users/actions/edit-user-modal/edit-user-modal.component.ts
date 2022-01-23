@@ -4,15 +4,11 @@ import { UserExtended } from 'src/app/models/user-extended';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
-import { User, UserRequest } from 'src/app/models/api/user';
-import { FileRequest, FileUploadRequest } from 'src/app/models/api/file';
-import { EntityNameEnum } from 'src/app/models/api/entity-name-enum';
-import { FilesService } from 'src/app/services/files.service';
+import { UserRequest } from 'src/app/models/api/user';
 
 @Component({
   selector: 'app-edit-user-modal',
-  templateUrl: './edit-user-modal.component.html',
-  styleUrls: ['./edit-user-modal.component.css']
+  templateUrl: './edit-user-modal.component.html'
 })
 export class EditUserModalComponent implements OnInit {
 
@@ -34,10 +30,6 @@ export class EditUserModalComponent implements OnInit {
   }
 
   onUpdateUser() {
-    this.updateRole();
-  }
-
-  private updateRole() {
     if (this.formGroup.valid) {
       const request: UserRequest = {
         name: this.userToEdit.email,
@@ -60,8 +52,7 @@ export class EditUserModalComponent implements OnInit {
             title: 'Update user',
             text: err.error.msg,
             icon: 'error',
-            showConfirmButton: false,
-            timer: 1500
+            showConfirmButton: true
           })
         });
     }

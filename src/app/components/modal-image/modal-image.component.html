@@ -11,9 +11,13 @@
                 
                     <div class="w-100 d-flex flex-column justify-content-center align-items-center">
                         <h5 class="font-italic" *ngIf="!imgLoaded">Default image</h5>
-                        <img
+                        <img *ngIf="imgLoaded || (!imgLoaded && !usePipeImage)"
                           class="img-fluid mb-2"
                           [src]="imgLoaded ? imgLoaded?.path : defaultImageUrl"
+                          style="width: 300px"/>
+                        <img *ngIf="!imgLoaded && usePipeImage"
+                          class="img-fluid mb-2"
+                          [src]="defaultImageUrl|imageUrl:entity"
                           style="width: 300px"/>
                     </div>
         

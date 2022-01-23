@@ -52,7 +52,6 @@ export class UsersComponent implements OnInit {
 
   @ViewChild('imgTemplate', { static: true }) imgTemplate: TemplateRef<any>;
   @ViewChild('authTemplate', { static: true }) authTemplate: TemplateRef<any>;
-  @ViewChild('editRole') editRoleTemplate: any;
 
   get defaultPagination() {
     return this._defaultPagination;
@@ -257,23 +256,6 @@ export class UsersComponent implements OnInit {
       }
     });
     this.tableRows = users;
-  }
-
-  private loadEditUserModal(field: 'role' | 'image', user: UserExtended) {
-    const modalRef = this.modalService.open(EditUserModalComponent, {backdrop: 'static', keyboard: false});
-    modalRef.componentInstance.userToEdit = user;
-    modalRef.componentInstance.field = field;
-    modalRef.componentInstance.token = this.token;
-    modalRef.result.then(result => {
-      if(result === 'success') {
-        if(field === 'image') {
-        }
-        localStorage.setItem('user', JSON.stringify(result.userUpdated));
-        this.pagesService.setUser(result.userUpdated);
-        this.getUser();
-        this.loadData();
-      }
-    });
   }
 
 }

@@ -1,9 +1,30 @@
-import { Hospital } from "./hospital";
-import { User } from "./user";
+import { HospitalRef } from "./hospital";
+import { UserRef } from "./user";
+
+export interface DoctorRequest {
+    name: string;
+    hospital: string;
+}
+
+export interface DoctorResponse {
+    newDoctor: Doctor;
+}
+
+export interface DoctorUpdatedResponse {
+    doctorUpdated: Doctor;
+}
+
+export interface DoctorSearchResponse {
+    doctors: Doctor[];
+}
+
 
 export interface Doctor {
     uid: string;
     name: string;
-    user: User;
-    hospital: Hospital;
+    user: UserRef;
+    hospital: HospitalRef;
+    img?: string;
 }
+
+

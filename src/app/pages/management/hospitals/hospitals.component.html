@@ -1,1 +1,94 @@
-<p>hospitals works!</p>
+<div class="hospitals-management animated fadeIn fast">
+    <div class="row animated fadeIn fast">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body d-flex">
+                    <input [(ngModel)]="nameCriteria" type="text" class="form-control mr-3" placeholder="Search hospital..."
+                        (ngModelChange)="searchData()" (keyup.enter)="searchData()" />
+
+
+                    <button type="button" class="btn btn-secondary" (click)="cleanCriteria()">Clean
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row animated fadeIn fast" *ngIf="showLoader && !errorInSearch">
+        <div class="col-12">
+            <app-alert-loader [header]="'Loading'" [content]="'Please wait'">
+            </app-alert-loader>
+        </div>
+    </div>
+
+    <div class="row animated fadeIn fast" *ngIf="!showLoader && !errorInSearch">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="card-title">Hospitals</h4>
+                            <h6 class="card-subtitle">Hospitals registered in the application.</h6>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary" (click)="onCreateHospital()"><i class="fa fa-hospital-o mr-2"></i>New</button>
+                        </div>
+                    </div>
+                    
+                    <app-table-search 
+                        [columns]="tableColumns" 
+                        [enableClientPagination]="enableClientPagination"
+                        [pagination]="pagination"
+                        [showActions]="true"
+                        [rows]="tableRows" 
+                        (removeClick)="onRemoveHospital($event)" 
+                        (editClick)="onEditHospital($event)">
+                    </app-table-search>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="errorInSearch">
+        <div class="col-md-12">
+            <app-custom-error [title]="'Error in search'" [content]="
+              'An error ocurred when get hospitals. Please, contact with the administrator.'">
+            </app-custom-error>
+        </div>
+    </div>
+
+    <ng-template #imgTemplate let-img="img" let-id="id">
+        <div class="img-hospital d-flex justify-content-center">
+            <img [src]="img | imageUrl:entityNameEnum.Hospitals" class="avatar cursor-pointer" (click)="onEditImage(id)">
+        </div>
+    </ng-template>
+
+    <ng-template #newHospitalTemplate let-modal>
+        <div class="modal-header">
+            <h4>New hospital</h4>
+        </div>
+        <form [formGroup]="formGroup" novalidate>
+            <div class="modal-body">
+                <div class="form-group" 
+                    [class.has-danger]="formGroup.get('name').touched && formGroup.get('name').errors">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" formControlName="name">
+
+                    <span class="text-danger"
+                        *ngIf="formGroup.get('name').touched && (formGroup.get('name').hasError('required') 
+                                || formGroup.get('name').hasError('invalidName'))">
+                        The field name is mandatory
+                    </span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" [disabled]="formGroup.invalid" (click)="newHospital(formGroup)">Create
+                </button>
+                <button type="button" class="btn btn-secondary" aria-label="Close"
+                    (click)="modal.close('cancel')">Cancel</button>
+            </div>
+        </form>
+        
+    </ng-template>
+</div>

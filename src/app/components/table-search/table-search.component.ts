@@ -11,11 +11,15 @@ import { TableColumn, TablePagination } from 'src/app/models/components/table-se
 export class TableSearchComponent {
 
   private _pagination: TablePagination;
-  private _columns: TableColumn[];
-  private _rows: any[];
- 
+  private _originalRows: any[];
+  
+  tableColumns: TableColumn[];
+  tableRows: any[];
+
   @Input() enablePagination: boolean = false;
   @Input() showActions: boolean = true;
+  @Input() enableClientPagination: boolean = false;
+  
 
   @Output() pageChange = new EventEmitter<number>();
   @Output() removeClick = new EventEmitter<any>();
@@ -30,33 +34,38 @@ export class TableSearchComponent {
   @Input()
   set pagination(value: TablePagination) {
     this._pagination = value;
-    if(this._pagination.totalItems) {
+    if (this._pagination.totalItems) {
       this.maxOffsetAllowed = this.pagination.totalItems / this.pagination.limit;
     }
   }
 
-  get rows(): any[] {
-    return this._rows;
-  }
   @Input()
   set rows(value: any[]) {
-    if(!value) {
-      this._rows = [];
+    if (!value) {
+      this.tableRows = [];
+    }
+    
+    if(this.enableClientPagination) {
+      this._originalRows = value;
+      if(!this.pagination) {
+        this.pagination = {offset: 0, limit: 10, totalItems: 0};
+      }
+      this.paginateTable();
+
+    } else {
+      this.tableRows = value;
     }
 
-    this._rows = value;
+    
   }
 
-  get columns(): TableColumn[] {
-    return this._columns;
-  }
   @Input()
   set columns(value: TableColumn[]) {
-    this._columns = value;
+    this.tableColumns = value;
     setTimeout(() => {
       this.updateColumnsSize();
     }, 0);
-    
+
   }
 
 
@@ -64,13 +73,22 @@ export class TableSearchComponent {
               private cd: ChangeDetectorRef) { }
 
   previousPage() {
-    this.pagination.offset = this.pagination.offset > 0 ? this.pagination.offset-1 : 0;
-    this.pageChange.emit(this.pagination.offset);
+    this.pagination.offset = this.pagination.offset > 0 ? this.pagination.offset - 1 : 0;
+    if(this.enableClientPagination) {
+      this.paginateTable();
+    } else {
+      this.pageChange.emit(this.pagination.offset);
+    }
+    
   }
 
   nextPage() {
-    this.pagination.offset = this.pagination.offset <= this.maxOffsetAllowed ? this.pagination.offset+1 : this.maxOffsetAllowed;
-    this.pageChange.emit(this.pagination.offset);
+    this.pagination.offset = this.pagination.offset <= this.maxOffsetAllowed ? this.pagination.offset + 1 : this.maxOffsetAllowed;
+    if(this.enableClientPagination) {
+      this.paginateTable();
+    } else {
+      this.pageChange.emit(this.pagination.offset);
+    }
   }
 
   onRemoveRowClick(row: any) {
@@ -81,15 +99,25 @@ export class TableSearchComponent {
     this.editClick.emit(row);
   }
 
-  trackByColumn(index:number, column: TableColumn): string {
+  trackByColumn(index: number, column: TableColumn): string {
     return column.id;
   }
 
   private updateColumnsSize() {
-    this.columns.forEach(column => {
-      if(column.fixed) {
+    this.tableColumns.forEach(column => {
+      if (column.fixed) {
         this.elementRef.nativeElement.querySelector(`#${column.id}`).style.width = `${column.columnWidth}px`;
       }
     })
+  }
+
+  private paginateTable() {
+    const start = (this.pagination.offset * this.pagination.limit);
+    this.tableRows = this._originalRows.slice(start > 0 ? start : 0, start + this.pagination.limit);
+    this.pagination = {
+      offset: this.pagination.offset,
+      limit: this.pagination.limit,
+      totalItems: this._originalRows.length
+    };
   }
 }

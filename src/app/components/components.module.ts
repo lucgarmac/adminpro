@@ -9,6 +9,7 @@ import { CustomErrorComponent } from './custom-error/custom-error.component';
 import { AlertLoaderComponent } from './alert-loader/alert-loader.component';
 import { TableSearchComponent } from './table-search/table-search.component';
 import { ModalImageComponent } from './modal-image/modal-image.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -24,7 +25,8 @@ import { ModalImageComponent } from './modal-image/modal-image.component';
   imports: [
     CommonModule,
     FormsModule,
-    NgChartsModule
+    NgChartsModule,
+    PipesModule
   ],
   exports: [
     IncreaserComponent,

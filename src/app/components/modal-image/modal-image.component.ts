@@ -23,6 +23,7 @@ export class ModalImageComponent implements OnInit {
   entity: EntityNameEnum;
   singularEntity: string;
   defaultImageUrl: string;
+  usePipeImage: boolean = false;
 
   @ViewChild('inputFile', { static: false }) inpuFileElement: ElementRef;
 
@@ -38,6 +39,7 @@ export class ModalImageComponent implements OnInit {
       this.defaultImageUrl = data.entityDataModal ? data.entityDataModal.defaultImageUrl : null;
       this.id = data.entityDataModal ? data.entityDataModal.id : null;
       this.token = data.entityDataModal ? data.entityDataModal.token : null;
+      this.usePipeImage = this.defaultImageUrl && !(this.defaultImageUrl.includes('http') || this.defaultImageUrl.includes('https'));
 
       if (!this.defaultImageUrl) {
         this.loadDefaultImage();
@@ -92,15 +94,15 @@ export class ModalImageComponent implements OnInit {
     if (this.imgLoaded && this.token && this.id) {
       const request: FileUploadRequest = {
         id: this.id,
-        entity: EntityNameEnum.Users,
+        entity: this.entity,
         img: this.imgLoaded.file
       };
       this.filesService.uploadImage(this.token, request)
         .subscribe({
           next: response => {
             Swal.fire({
-              title: 'Update user',
-              text: 'The user has been update successfully',
+              title: 'Update image',
+              text: 'The image has been update successfully',
               icon: 'success',
               showConfirmButton: false,
               timer: 1500
@@ -110,19 +112,27 @@ export class ModalImageComponent implements OnInit {
             this.cd.detectChanges();
           },
           error: err => Swal.fire({
-            title: 'Update user',
+            title: 'Update image',
             text: err.error.msg,
             icon: 'error',
-            showConfirmButton: false,
-            timer: 1500
+            showConfirmButton: true
           })
         });
     }
   }
 
   closeModal() {
+    this.cleanValues();
     this.removeTempImage();
-    this.showModal = false;
     this.cd.detectChanges();
+  }
+
+  private cleanValues() {
+    this.showModal = false;
+    this.entity = null;
+    this.defaultImageUrl = null;
+    this.id = null;
+    this.token = null;
+    this.usePipeImage = false;
   }
 }
