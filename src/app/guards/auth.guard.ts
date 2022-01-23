@@ -21,10 +21,13 @@ export class AuthGuard implements CanActivate {
         map( response => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('user', JSON.stringify(response.user));
+          localStorage.setItem('menu', JSON.stringify(response.menu))
           return true;
         }),
         catchError( _ => {
           localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          localStorage.removeItem('menu');
           return of(false);
         }),
         tap(result => {
@@ -33,7 +36,7 @@ export class AuthGuard implements CanActivate {
           }
         })
       );
-      
+  
   }
 
 }

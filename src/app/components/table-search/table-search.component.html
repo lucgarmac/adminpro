@@ -35,11 +35,13 @@
         </td>
       </tr>
 
-      <tr *ngIf="!tableRows || (tableRows && !tableRows.length)">
-        <td [attr.colspan]="showActions ? tableColumns.length + 1 : tableColumns.length">
-          <span>No Results</span>
-        </td>
-      </tr>
+      <ng-container *ngIf="tableColumns">
+        <tr *ngIf="!tableRows || (tableRows && !tableRows.length)">
+          <td [attr.colspan]="showActions ? tableColumns.length + 1 : tableColumns.length">
+            <span>No Results</span>
+          </td>
+        </tr>
+      </ng-container>
 
 
     </tbody>

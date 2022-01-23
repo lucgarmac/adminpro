@@ -7,7 +7,7 @@ import { DataEntityResponse, SearchEntityRequest } from '../models/api/search';
 @Injectable({
   providedIn: 'root'
 })
-export class SearchsService {
+export class SearchesService {
 
   private url: string = `${environment.baseUrl}/search`;
 

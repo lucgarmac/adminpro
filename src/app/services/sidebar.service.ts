@@ -6,32 +6,13 @@ import { MenuItem } from '../models/menu-item';
 })
 export class SidebarService {
 
-  private _menu: MenuItem[] = [
-    {
-      title: 'Main',
-      icon: 'mdi mdi-gauge',
-      children: [
-        { title: 'Dashboard', path: '/' },
-        { title: 'Progress bar', path: 'progress' },
-        { title: 'Charts', path: 'charts' },
-        { title: 'Promises', path: 'promises' },
-        { title: 'Rxjs', path: 'rxjs' }
-      ]
-    },
-    {
-      title: 'Management',
-      icon: 'mdi mdi-folder-lock-open',
-      children: [
-        { title: 'Users', path: 'users' },
-        { title: 'Hospitals', path: 'hospitals' },
-        { title: 'Doctors', path: 'doctors' },
-      ]
-    }
-  ]
+  private _menu: MenuItem[];
 
   constructor() { }
 
   get menu(): MenuItem[] {
+    const menuUser = localStorage.getItem('menu');
+    this._menu = menuUser ? JSON.parse(menuUser) : [];
     return this._menu;
   }
 }

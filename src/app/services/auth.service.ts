@@ -40,9 +40,11 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');   
     this.auth2.signOut().then(() => {
       this.ngZone.run(() => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('menu');
         this.router.navigate(['/login']);
       });
     });

@@ -7,27 +7,16 @@ import { HospitalRequest } from 'src/app/models/api/hospital';
 import { SearchEntityRequest } from 'src/app/models/api/search';
 import { TableColumn, TableColumnTypeEnum, TablePagination } from 'src/app/models/components/table-search';
 import { HospitalExtended } from 'src/app/models/hospital-extended';
-import { ListItem } from 'src/app/models/list-item';
 import { ModalImageService } from 'src/app/services/components/modal-image.service';
 import { HospitalService } from 'src/app/services/hospital.service';
-import { SearchsService } from 'src/app/services/searchs.service';
+import { SearchesService } from 'src/app/services/searchs.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import Swal from 'sweetalert2';
 import { EditHospitalModalComponent } from './actions/edit-hospital-modal/edit-hospital-modal.component';
 
 @Component({
   selector: 'app-hospitals',
-  templateUrl: './hospitals.component.html',
-  styles: [`
-  .avatar {
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      background-size: cover;
-      background-color: #869196;
-      border: solid 1px #D1ECF1;
-    }
-  `]
+  templateUrl: './hospitals.component.html'
 })
 export class HospitalsComponent implements OnInit {
 
@@ -62,7 +51,7 @@ export class HospitalsComponent implements OnInit {
   }
 
   constructor(private hospitalService: HospitalService,
-              private searchsService: SearchsService,
+              private searchesService: SearchesService,
               private modalService: NgbModal,
               private modalImageService: ModalImageService,
               private builder: FormBuilder,
@@ -175,7 +164,7 @@ export class HospitalsComponent implements OnInit {
         name: this.nameCriteria
       };
       this.enableClientPagination = false;
-      this.searchsService.getDataByEntityAndName(this.token, request)
+      this.searchesService.getDataByEntityAndName(this.token, request)
         .subscribe(response => {
           this.updateData(response.hospitals);
         });

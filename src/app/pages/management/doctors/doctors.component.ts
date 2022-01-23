@@ -1,36 +1,21 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { finalize } from 'rxjs';
-import { DoctorRequest } from 'src/app/models/api/doctor';
 import { EntityNameEnum } from 'src/app/models/api/entity-name-enum';
-import { FileRequest } from 'src/app/models/api/file';
 import { SearchEntityRequest } from 'src/app/models/api/search';
 import { TableColumn, TableColumnTypeEnum, TablePagination } from 'src/app/models/components/table-search';
 import { DoctorExtended } from 'src/app/models/doctor-extended';
 import { ListItem } from 'src/app/models/list-item';
 import { ModalImageService } from 'src/app/services/components/modal-image.service';
 import { DoctorService } from 'src/app/services/doctor.service';
-import { FilesService } from 'src/app/services/files.service';
-import { HospitalService } from 'src/app/services/hospital.service';
-import { SearchsService } from 'src/app/services/searchs.service';
-import { UtilsService } from 'src/app/services/utils.service';
+import { SearchesService } from 'src/app/services/searchs.service';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-doctors',
-  templateUrl: './doctors.component.html',
-  styles: [`
-  .avatar {
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      background-size: cover;
-      background-color: #869196;
-      border: solid 1px #D1ECF1;
-    }
-  `]
+  templateUrl: './doctors.component.html'
 })
 export class DoctorsComponent implements OnInit {
 
@@ -66,12 +51,8 @@ export class DoctorsComponent implements OnInit {
 
 
   constructor(private doctorService: DoctorService,
-              private searchsService: SearchsService,
-              private modalService: NgbModal,
+              private searchesService: SearchesService,
               private modalImageService: ModalImageService,
-              private builder: FormBuilder,
-              private utilsService: UtilsService,
-              private hospitalService: HospitalService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -142,7 +123,7 @@ export class DoctorsComponent implements OnInit {
         name: this.nameCriteria
       };
       this.enableClientPagination = false;
-      this.searchsService.getDataByEntityAndName(this.token, request)
+      this.searchesService.getDataByEntityAndName(this.token, request)
         .subscribe(response => {
           this.updateData(response.doctors);
         });

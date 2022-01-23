@@ -1,0 +1,25 @@
+<div class="row animated fadeIn fast">
+    <div class="col-md-4" *ngFor="let view of viewEntities">
+        <div class="card h-100">
+            <div class="card-body">
+                <h4 class="card-title">{{view.entity}}</h4>
+                <app-table-search 
+                    [columns]="view.tableColumns" 
+                    [enableClientPagination]="true"
+                    [pagination]="view.pagination"
+                    [rows]="view.tableRows">
+                </app-table-search>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #nameTemplate let-uid="uid" let-name="name">
+    <a [routerLink]="['/dashboard/doctors', uid]">{{name}}</a>
+</ng-template>
+
+<ng-template #imgTemplate let-img="img" let-entity="entity">
+    <div class="img-entity d-flex justify-content-center">
+        <img [src]="img|imageUrl:entity" class="avatar">
+    </div>
+</ng-template>

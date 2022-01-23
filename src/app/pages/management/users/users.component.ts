@@ -7,7 +7,7 @@ import { User, UserSearchRequest, UserRequest } from 'src/app/models/api/user';
 import { TableColumn, TableColumnTypeEnum, TablePagination } from 'src/app/models/components/table-search';
 import { UserExtended } from 'src/app/models/user-extended';
 import { FilesService } from 'src/app/services/files.service';
-import { SearchsService } from 'src/app/services/searchs.service';
+import { SearchesService } from 'src/app/services/searchs.service';
 import { UserService } from 'src/app/services/user.service';
 import { PagesService } from '../../pages.service';
 import Swal from 'sweetalert2';
@@ -17,17 +17,7 @@ import { ModalImageService } from 'src/app/services/components/modal-image.servi
 
 @Component({
   selector: 'app-users',
-  templateUrl: './users.component.html',
-  styles: [`
-    .avatar {
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      background-size: cover;
-      background-color: #869196;
-      border: solid 1px #D1ECF1;
-    }`
-  ]
+  templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit {
 
@@ -60,7 +50,7 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService,
               private pagesService: PagesService,
               private filesService: FilesService,
-              private searchsService: SearchsService,
+              private searchesService: SearchesService,
               private modalService: NgbModal,
               private modalImageService: ModalImageService) { }
 
@@ -154,7 +144,7 @@ export class UsersComponent implements OnInit {
         name: this.nameCriteria
       };
       this.enablePagination = false;
-      this.searchsService.getDataByEntityAndName(this.token, request)
+      this.searchesService.getDataByEntityAndName(this.token, request)
         .subscribe(response => {
           this.updateData(response.users);
         });

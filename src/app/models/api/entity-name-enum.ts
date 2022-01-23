@@ -3,3 +3,5 @@ export enum EntityNameEnum {
     Hospitals= 'hospitals',
     Doctors= 'doctors'
 }
+
+export type EntityNameType = keyof typeof EntityNameEnum;

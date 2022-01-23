@@ -17,7 +17,7 @@ export class TableSearchComponent {
   tableRows: any[];
 
   @Input() enablePagination: boolean = false;
-  @Input() showActions: boolean = true;
+  @Input() showActions: boolean = false;
   @Input() enableClientPagination: boolean = false;
   
 
@@ -104,20 +104,24 @@ export class TableSearchComponent {
   }
 
   private updateColumnsSize() {
-    this.tableColumns.forEach(column => {
-      if (column.fixed) {
-        this.elementRef.nativeElement.querySelector(`#${column.id}`).style.width = `${column.columnWidth}px`;
-      }
-    })
+    if(this.tableColumns && this.tableColumns.length) {
+      this.tableColumns.forEach(column => {
+        if (column.fixed) {
+          this.elementRef.nativeElement.querySelector(`#${column.id}`).style.width = `${column.columnWidth}px`;
+        }
+      });
+    }
   }
 
   private paginateTable() {
     const start = (this.pagination.offset * this.pagination.limit);
-    this.tableRows = this._originalRows.slice(start > 0 ? start : 0, start + this.pagination.limit);
+    this.tableRows = this._originalRows
+      ? this._originalRows.slice(start > 0 ? start : 0, start + this.pagination.limit)
+      : this._originalRows;
     this.pagination = {
       offset: this.pagination.offset,
       limit: this.pagination.limit,
-      totalItems: this._originalRows.length
+      totalItems: this._originalRows ? this._originalRows.length : 0
     };
   }
 }

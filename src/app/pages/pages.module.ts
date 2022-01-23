@@ -21,6 +21,7 @@ import { EditUserModalComponent } from './management/users/actions/edit-user-mod
 import { EditHospitalModalComponent } from './management/hospitals/actions/edit-hospital-modal/edit-hospital-modal.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { DoctorFormComponent } from './management/doctors/actions/doctor-form/doctor-form.component';
+import { SearchesComponent } from './searches/searches.component';
 
 
 
@@ -39,7 +40,8 @@ import { DoctorFormComponent } from './management/doctors/actions/doctor-form/do
     HospitalsComponent,
     EditUserModalComponent,
     EditHospitalModalComponent,
-    DoctorFormComponent
+    DoctorFormComponent,
+    SearchesComponent
   ],
   imports: [
     CommonModule,

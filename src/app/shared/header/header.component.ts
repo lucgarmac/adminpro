@@ -5,6 +5,7 @@ import { User } from 'src/app/models/api/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { FilesService } from 'src/app/services/files.service';
 import { PagesService } from 'src/app/pages/pages.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit{
 
   constructor(private authService: AuthService,
               private filesService: FilesService,
-              private pagesService: PagesService) { }
+              private pagesService: PagesService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getImageUser();
@@ -27,6 +29,11 @@ export class HeaderComponent implements OnInit{
       this.getImageUser();
     });
   }
+
+  findEntities(criteria: string) {
+    this.router.navigate(['/dashboard/searches', criteria]);
+  }
+
 
   logoutClick() {
     this.authService.logout();

@@ -16,7 +16,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule, 
+    FormsModule
   ],
   exports: [
     BreadcrumComponent,

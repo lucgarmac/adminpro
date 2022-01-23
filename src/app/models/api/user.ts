@@ -1,3 +1,6 @@
+import { MenuItem } from "../menu-item";
+import { RoleEnum } from "./role-enum";
+
 export interface UserRequest {
     name: string;
     email: string;
@@ -8,6 +11,7 @@ export interface UserRequest {
 export interface UserResponse {
     user: User;
     token: string;
+    menu?: MenuItem[];
 }
 
 export interface UserUpdatedResponse {
@@ -18,7 +22,7 @@ export interface User {
     uid: string;
     name: string;
     email?: string;
-    role?: string;
+    role?: RoleEnum;
     google?: boolean;
     img?: string;
 }
@@ -37,3 +41,4 @@ export interface UserSearchResponse {
 export interface UserRef extends User {
     _id?: string;
 }
+

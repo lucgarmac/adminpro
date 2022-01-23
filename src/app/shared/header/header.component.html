@@ -48,8 +48,8 @@
                 <!-- Search -->
                 <!-- ============================================================== -->
                 <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                    <form class="app-search">
-                        <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                    <form class="app-search" novalidate (submit)="findEntities(inputCriteria.value)">
+                        <input #inputCriteria type="text" class="form-control" placeholder="Search entities by name"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
                 </li>
 
 

@@ -13,3 +13,12 @@
 #themecolors li a.selector, .cursor-pointer {
   cursor: pointer;
 }
+
+.avatar {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-color: #869196;
+  border: solid 1px #D1ECF1;
+}
