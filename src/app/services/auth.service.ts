@@ -40,14 +40,25 @@ export class AuthService {
   }
 
   logout() {
-    this.auth2.signOut().then(() => {
-      this.ngZone.run(() => {
+    
+    
+    this.auth2.signOut()
+      .then(() => {
+        this.ngZone.run(() => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          localStorage.removeItem('menu');
+          this.router.navigate(['/login']);
+        });
+    }).catch(() => {
+        console.error('auth error - manual logout');
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('menu');
         this.router.navigate(['/login']);
-      });
     });
+    
+    
   }
 
   loadAuthGoogle(): any {

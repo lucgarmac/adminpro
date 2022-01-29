@@ -11,6 +11,7 @@
                 <a href="javascript:void(0)">Home</a>
             </li>
             <li class="breadcrumb-item">pages</li>
+            <li *ngIf="parentTitle"  class="breadcrumb-item">{{parentTitle}}</li>
             <li class="breadcrumb-item active">{{title}}</li>
         </ol>
     </div>

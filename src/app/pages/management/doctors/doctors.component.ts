@@ -102,7 +102,7 @@ export class DoctorsComponent implements OnInit {
   }
 
   onEditDoctor(doctor: DoctorExtended) {
-    this.router.navigate(['/dashboard/doctors', doctor.uid]);
+    this.router.navigate(['/management/doctors', doctor.uid]);
   }
 
   onEditImage(uid: string) {
@@ -113,7 +113,7 @@ export class DoctorsComponent implements OnInit {
   }
 
   onCreateDoctor() {
-    this.router.navigate(['/dashboard/doctors/new']);
+    this.router.navigate(['/management/doctors/new']);
   }
 
   searchData() {

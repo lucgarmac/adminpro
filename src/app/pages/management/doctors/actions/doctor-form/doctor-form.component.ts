@@ -145,7 +145,7 @@ export class DoctorFormComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['/dashboard/doctors']);
+    this.router.navigate(['/management/doctors']);
   }
 
   private getHospitals() {
@@ -172,7 +172,7 @@ export class DoctorFormComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           });
-          setTimeout(() => this.router.navigate(['/dashboard/doctors']), 0);
+          setTimeout(() => this.router.navigate(['/management/doctors']), 0);
         },
         error: err => Swal.fire({
           title: 'Update doctor',

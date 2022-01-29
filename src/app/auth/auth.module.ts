@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedFunctionalModule } from '../shared/shared-functional.module';
+import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -15,11 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent
   ],
   imports: [
-    CommonModule,
-    RouterModule, 
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    SharedFunctionalModule,
+    AuthRoutingModule
   ]
 })
 export class AuthModule { }
